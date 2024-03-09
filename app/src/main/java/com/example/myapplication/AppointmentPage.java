@@ -18,7 +18,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class AppointmentPage extends AppCompatActivity {
 
-    String[] location_array = {"loc1", "loc2","loc3"};
     String[] specialist_array = {"sp1", "sp2", "sp3"};
     Button login_btn;
 
@@ -39,8 +38,8 @@ public class AppointmentPage extends AppCompatActivity {
         });
 
 
-        autoCompleteTextView = findViewById(R.id.auto_complete_txt);
-        adapterItems = new ArrayAdapter<String>(this,R.layout.list_item);
+        autoCompleteTextView = findViewById(R.id.specilist_complete_txt);
+        adapterItems = new ArrayAdapter<String>(this,R.layout.list_item, specialist_array);
 
 
         autoCompleteTextView.setAdapter(adapterItems);
@@ -48,10 +47,24 @@ public class AppointmentPage extends AppCompatActivity {
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(AppointmentPage.this, "Item" + item, Toast.LENGTH_SHORT).show();
+                String item = adapterView.getItemAtPosition(i).toString().trim();
+                Toast.makeText(AppointmentPage.this,"Item" + item, Toast.LENGTH_SHORT).show();
             }
         });
+
+//        autoCompleteTextView = findViewById(R.id.location_complete_txt);
+//        adapterItems = new ArrayAdapter<String>(this,R.layout.list_item, location_array);
+//
+//
+//        autoCompleteTextView.setAdapter(adapterItems);
+//
+//        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                String item = adapterView.getItemAtPosition(i).toString().trim();
+//                Toast.makeText(AppointmentPage.this, item, Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
 
