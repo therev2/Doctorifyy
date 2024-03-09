@@ -17,7 +17,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     TextView are_doc;
+
     Button login_btn;
+
+    TextView signup;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -25,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+//        linking all activities
+
         are_doc = findViewById(R.id.are_you_doc);
         are_doc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +48,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        signup = findViewById(R.id.O);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, patient_register.class);
+                startActivity(intent);
+            }
+        });
+
 
 
 
