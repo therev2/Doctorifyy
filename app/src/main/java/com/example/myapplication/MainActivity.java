@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     TextView are_doc;
+    Button login_btn;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -30,6 +33,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        login_btn = findViewById(R.id.klop);
+        login_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Login Successful" , Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, AppointmentPage.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -38,5 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
     }
 }

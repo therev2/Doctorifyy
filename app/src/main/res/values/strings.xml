@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="location">Select location</string>
+    <string name="specialist">Select specialist</string>
+
 </resources>
