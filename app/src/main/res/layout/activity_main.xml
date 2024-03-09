@@ -147,6 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="Login"
+            android:id="@+id/klop"
             app:cornerRadius="32dp"/>
         <View
             android:id="@+id/Q"
