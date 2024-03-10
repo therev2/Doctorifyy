@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     TextView signup;
 
-    com.google.android.material.textfield.TextInputEditText loginEmail, loginPassword;
-    com.google.android.material.button.MaterialButton loginButton;
+    EditText loginEmail, loginPassword;
+    Button loginButton;
 
 
     @SuppressLint("MissingInflatedId")
@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if(passwordFromDB.equals(userPassword)){
                         loginEmail.setError(null);
+                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, AppointmentPage.class);
                         startActivity(intent);
                     }else {
