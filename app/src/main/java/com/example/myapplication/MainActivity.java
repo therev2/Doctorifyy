@@ -102,6 +102,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    boolean isAlphanumeric(final int codePoint) {
+        return (codePoint >= 64 && codePoint <= 90) ||
+                (codePoint >= 97 && codePoint <= 122) ||
+                (codePoint >= 33 && codePoint <= 57);
+    }
+
+
     public Boolean validateEmail() {
         String val = loginEmail.getText().toString();
         if (val.isEmpty()){
@@ -109,8 +117,23 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }else {
             loginEmail.setError(null);
-            return true;
+            boolean result = true;
+            for (int i = 0; i < val.length(); i++) {
+                int codePoint = val.codePointAt(i);
+                if (!isAlphanumeric(codePoint)) {
+                    result = false;
+                    break;
+                }
+            }
+            if (result){
+                return true;
+            } else {
+                loginEmail.setError("Username can only be alphanumberic");
+            }
+
         }
+        return false;
+
 
     }
 
