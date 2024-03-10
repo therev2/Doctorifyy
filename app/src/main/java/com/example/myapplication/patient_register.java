@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,9 +21,11 @@ import com.google.firebase.database.FirebaseDatabase;
 public class patient_register extends AppCompatActivity {
 
     EditText signupEmail, signupPassword;
-    com.google.android.material.button.MaterialButton signupButton;
+    Button signupButton;
     FirebaseDatabase database;
     DatabaseReference reference;
+
+
 
 
 //    com.google.android.material.button.MaterialButton signup_btn;
