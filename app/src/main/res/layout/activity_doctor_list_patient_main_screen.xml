@@ -8,8 +8,8 @@
 
     tools:context=".Doctor_list_patient_main_screen">
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/list_view_of_doctors_patient_main_list"
         tools:listitem="@layout/list_item_doctor_list"/>
 
