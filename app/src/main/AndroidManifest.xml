@@ -6,12 +6,18 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/logo_line_white"
+        android:icon="@drawable/icon_test"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo_line_white"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+        <activity
+            android:name=".Doctor_list_patient_main_screen"
+            android:exported="false" />
+        <activity
+            android:name=".doctor_list"
+            android:exported="false" />
         <activity
             android:name=".doctor_register"
             android:exported="false" />

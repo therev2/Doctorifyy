@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     TextView signup;
 
-    com.google.android.material.textfield.TextInputEditText loginEmail, loginPassword;
-    com.google.android.material.button.MaterialButton loginButton;
+    EditText loginEmail, loginPassword;
+    Button loginButton;
 
 
     @SuppressLint("MissingInflatedId")
@@ -102,6 +102,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    boolean isAlphanumeric(final int codePoint) {
+        return (codePoint >= 64 && codePoint <= 90) ||
+                (codePoint >= 97 && codePoint <= 122) ||
+                (codePoint >= 33 && codePoint <= 57);
+    }
+
+
     public Boolean validateEmail() {
         String val = loginEmail.getText().toString();
         if (val.isEmpty()){
@@ -109,8 +117,23 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }else {
             loginEmail.setError(null);
-            return true;
+            boolean result = true;
+            for (int i = 0; i < val.length(); i++) {
+                int codePoint = val.codePointAt(i);
+                if (!isAlphanumeric(codePoint)) {
+                    result = false;
+                    break;
+                }
+            }
+            if (result){
+                return true;
+            } else {
+                loginEmail.setError("Username can only be alphanumberic");
+            }
+
         }
+        return false;
+
 
     }
 
@@ -143,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if(passwordFromDB.equals(userPassword)){
                         loginEmail.setError(null);
+                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, AppointmentPage.class);
                         startActivity(intent);
                     }else {
