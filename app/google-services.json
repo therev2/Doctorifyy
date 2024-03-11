@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "388058570101",
+    "project_id": "doctorify-284ab",
+    "storage_bucket": "doctorify-284ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388058570101:android:a3ca82230944013aab073c",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_JREnruCnUu0nOM6ExYR7Ir0wSy8BZko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
