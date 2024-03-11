@@ -49,16 +49,89 @@ public class doctor_register extends AppCompatActivity {
                 String email = signupEmail.getText().toString();
                 String password = signupPassword.getText().toString();
 
-                HelperClass helperClass = new HelperClass(email, password);
-                reference.child(email).setValue(helperClass);
+                if(validateEmail() && validatePassword()){
+                    HelperClass helperClass = new HelperClass(email, password);
+                    reference.child(email.replace(".",",")).setValue(helperClass);
+                    Toast.makeText(doctor_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(doctor_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(doctor_register.this, MainActivity.class);
-                startActivity(intent);
+                    Intent intent = new Intent(doctor_register.this, MainActivity.class);
+                    startActivity(intent);
+
+                }
+
             }
         });
 
 
 
     }
+
+    boolean isAlphanumeric(final int codePoint) {
+        return (codePoint >= 64 && codePoint <= 90) ||
+                (codePoint >= 97 && codePoint <= 122) ||
+                (codePoint >= 32 && codePoint <= 57);
+    }
+
+
+
+    public Boolean validateEmail() {
+        String val = signupEmail.getText().toString();
+        if (val.isEmpty()) {
+            signupEmail.setError("Email cannot be empty");
+            return false;
+        } else {
+            signupEmail.setError(null);
+            boolean result = true;
+            for (int i = 0; i < val.length(); i++) {
+                int codePoint = val.codePointAt(i);
+                if (!isAlphanumeric(codePoint)) {
+                    result = false;
+                    break;
+                }
+            }
+            if (result) {
+                return true;
+            } else {
+                signupEmail.setError("Email can only be alphanumberic");
+                return false;
+            }
+        }
+    }
+
+
+    public Boolean validatePassword() {
+        String val = signupPassword.getText().toString();
+        if (val.isEmpty()) {
+            signupPassword.setError("Password cannot be empty");
+            return false;
+        } else {
+            signupPassword.setError(null);
+            if (val.isEmpty()) {
+                signupPassword.setError("Password cannot be empty");
+                return false;
+            } else {
+                signupPassword.setError(null);
+                boolean result = true;
+                for (int i = 0; i < val.length(); i++) {
+                    int codePoint = val.codePointAt(i);
+                    if (!isAlphanumeric(codePoint)) {
+                        result = false;
+                        break;
+                    }
+                }
+                if (result) {
+                    return true;
+                } else {
+                    signupPassword.setError("Password can only be alphanumberic");
+                    return false;
+                }
+            }
+
+
+        }
+
+
+    }
+
+
 }
