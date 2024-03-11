@@ -97,7 +97,7 @@
                     android:id="@+id/email_pat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:inputType="textEmailAddress"
                     android:ems="15"/>
             </com.google.android.material.textfield.TextInputLayout>
             <View

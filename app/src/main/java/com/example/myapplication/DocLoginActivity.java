@@ -72,14 +72,44 @@ public class DocLoginActivity extends AppCompatActivity {
 
     }
 
+    boolean isAlphanumeric(final int codePoint) {
+        return (codePoint >= 64 && codePoint <= 90) ||
+                (codePoint >= 97 && codePoint <= 122) ||
+                (codePoint >= 32 && codePoint <= 57);
+    }
+
+
     public Boolean validateEmail() {
         String val = loginEmail.getText().toString();
         if (val.isEmpty()){
-            loginEmail.setError("Username cannot be empty");
+            loginEmail.setError("Email cannot be empty");
             return false;
         }else {
             loginEmail.setError(null);
-            return true;
+            if (val.isEmpty()){
+                loginEmail.setError("Email cannot be empty");
+                return false;
+            }else {
+                loginEmail.setError(null);
+                boolean result = true;
+                for (int i = 0; i < val.length(); i++) {
+                    int codePoint = val.codePointAt(i);
+                    if (!isAlphanumeric(codePoint)) {
+                        result = false;
+                        break;
+                    }
+                }
+                if (result){
+                    return true;
+                } else {
+                    loginEmail.setError("Email can only be alphanumberic");
+                    return false;
+                }
+
+            }
+
+
+
         }
 
     }
@@ -91,7 +121,30 @@ public class DocLoginActivity extends AppCompatActivity {
             return false;
         }else {
             loginPassword.setError(null);
-            return true;
+            if (val.isEmpty()){
+                loginPassword.setError("Password cannot be empty");
+                return false;
+            }else {
+                loginPassword.setError(null);
+                boolean result = true;
+                for (int i = 0; i < val.length(); i++) {
+                    int codePoint = val.codePointAt(i);
+                    if (!isAlphanumeric(codePoint)) {
+                        result = false;
+                        break;
+                    }
+                }
+                if (result){
+                    return true;
+                } else {
+                    loginPassword.setError("Password can only be alphanumberic");
+                    return false;
+                }
+
+            }
+
+
+
         }
 
     }
@@ -109,7 +162,7 @@ public class DocLoginActivity extends AppCompatActivity {
 
                 if (snapshot.exists()){
                     loginEmail.setError(null);
-                    String passwordFromDB = snapshot.child(userUseremail).child("password").getValue(String.class);
+                    String passwordFromDB = snapshot.child(userUseremail.replace(".",",")).child("password").getValue(String.class);
 
                     if(passwordFromDB.equals(userPassword)){
                         loginEmail.setError(null);
