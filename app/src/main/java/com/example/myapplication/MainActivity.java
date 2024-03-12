@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                     if(passwordFromDB.equals(userPassword)){
                         loginEmail.setError(null);
                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, AppointmentPage.class);
+                        Intent intent = new Intent(MainActivity.this, HomePage.class);
                         startActivity(intent);
                     }else {
                         loginPassword.setError("invalid Credentials");

@@ -16,6 +16,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
 public class AppointmentPage extends AppCompatActivity {
 
     String[] specialist_array = {"sp1", "sp2", "sp3"};
@@ -78,6 +79,6 @@ public class AppointmentPage extends AppCompatActivity {
 
 
 
-
     }
+
 }

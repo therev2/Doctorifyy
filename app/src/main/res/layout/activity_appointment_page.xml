@@ -68,6 +68,7 @@
         android:background="@color/black"/>
 
     <LinearLayout
+        android:id="@+id/loc_but"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="28dp"
