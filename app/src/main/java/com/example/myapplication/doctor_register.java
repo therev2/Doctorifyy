@@ -3,6 +3,9 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,10 +21,18 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class doctor_register extends AppCompatActivity {
 
+    String[] specialist_array = {"Diabetes Management", "Diet and Nutrition", "Physiotherapist", "ENT Specialist",  "Eyes specialist", "Pulmonologist", "Dentist", "Sexual Health",  "Women's Health ",  "Gastroenterologist", "Cardiologist", "Skin and Hair",  "Child Specialist", "General physician"};
+
+
     EditText signupEmail, signupPassword, signupName, signupExp, signupCharge, signupTime, signupDegree;
     Button signupButton;
     FirebaseDatabase database;
     DatabaseReference reference;
+
+    AutoCompleteTextView autoCompleteTextView;
+    ArrayAdapter<String> adapterItems;
+
+    String item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +44,23 @@ public class doctor_register extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
+        autoCompleteTextView = findViewById(R.id.specilist_doc);
+        adapterItems = new ArrayAdapter<String>(this, R.layout.list_item, specialist_array);
+
+
+        autoCompleteTextView.setAdapter(adapterItems);
+
+
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                item = adapterView.getItemAtPosition(i).toString().trim();
+                Toast.makeText(doctor_register.this,item, Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         signupName = findViewById(R.id.name_doc);
         signupEmail = findViewById(R.id.email_doc);
@@ -57,11 +85,12 @@ public class doctor_register extends AppCompatActivity {
                 String charge = signupCharge.getText().toString();
                 String time = signupTime.getText().toString();
                 String degree = signupDegree.getText().toString();
+                String speacilist = item;
 
 
 
                 if(validateEmail() && validatePassword()){
-                    HelperClass helperClass = new HelperClass(email, password, name, exp, charge, time, degree);
+                    HelperClass helperClass = new HelperClass(email, password, name, exp, charge, time, degree, speacilist);
                     reference.child(email.replace(".",",")).setValue(helperClass);
                     Toast.makeText(doctor_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
 

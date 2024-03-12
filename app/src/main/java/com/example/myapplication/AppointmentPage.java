@@ -19,7 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class AppointmentPage extends AppCompatActivity {
 
-    String[] specialist_array = {"sp1", "sp2", "sp3"};
+    String[] specialist_array = {"Diabetes Management", "Diet and Nutrition", "Physiotherapist", "ENT Specialist",  "Eyes specialist", "Pulmonologist", "Dentist", "Sexual Health",  "Women's Health ",  "Gastroenterologist", "Cardiologist", "Skin and Hair",  "Child Specialist", "General physician"};
     Button login_btn;
 
     AutoCompleteTextView autoCompleteTextView;
@@ -58,23 +58,10 @@ public class AppointmentPage extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = adapterView.getItemAtPosition(i).toString().trim();
-                Toast.makeText(AppointmentPage.this,"Item" + item, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AppointmentPage.this,item, Toast.LENGTH_SHORT).show();
             }
         });
 
-//        autoCompleteTextView = findViewById(R.id.location_complete_txt);
-//        adapterItems = new ArrayAdapter<String>(this,R.layout.list_item, location_array);
-//
-//
-//        autoCompleteTextView.setAdapter(adapterItems);
-//
-//        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                String item = adapterView.getItemAtPosition(i).toString().trim();
-//                Toast.makeText(AppointmentPage.this, item, Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
 
 
