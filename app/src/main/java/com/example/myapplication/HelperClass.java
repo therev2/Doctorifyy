@@ -1,7 +1,26 @@
 package com.example.myapplication;
 
 public class HelperClass {
-    String email, password;
+
+    String name, email, password, exp, charge, time, degree;
+
+    public HelperClass(String email, String password, String name, String exp, String charge, String time, String degree) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.exp = exp;
+        this.charge = charge;
+        this.time = time;
+        this.degree = degree;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getEmail() {
         return email;
@@ -19,14 +38,41 @@ public class HelperClass {
         this.password = password;
     }
 
-    public HelperClass(String email, String password) {
-        this.email = email;
-        this.password = password;
+    public String getExp() {
+        return exp;
+    }
+
+    public void setExp(String exp) {
+        this.exp = exp;
+    }
+
+    public String getCharge() {
+        return charge;
+    }
+
+    public void setCharge(String charge) {
+        this.charge = charge;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
     }
 
     public HelperClass() {
-
     }
+
 
 
 }

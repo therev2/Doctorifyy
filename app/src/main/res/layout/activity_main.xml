@@ -135,7 +135,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <CheckBox
-                android:id="@+id/N"
+                android:id="@+id/rememberbox"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

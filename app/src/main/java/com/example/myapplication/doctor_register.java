@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class doctor_register extends AppCompatActivity {
 
-    EditText signupEmail, signupPassword;
+    EditText signupEmail, signupPassword, signupName, signupExp, signupCharge, signupTime, signupDegree;
     Button signupButton;
     FirebaseDatabase database;
     DatabaseReference reference;
@@ -34,10 +34,14 @@ public class doctor_register extends AppCompatActivity {
             return insets;
         });
 
+        signupName = findViewById(R.id.name_doc);
         signupEmail = findViewById(R.id.email_doc);
         signupPassword = findViewById(R.id.pass_doc);
         signupButton = findViewById(R.id.signupdoc);
-
+        signupExp = findViewById(R.id.exp_doc);
+        signupCharge = findViewById(R.id.charge_doc);
+        signupTime = findViewById(R.id.time_doc);
+        signupDegree = findViewById(R.id.degree_doc);
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,9 +52,16 @@ public class doctor_register extends AppCompatActivity {
 
                 String email = signupEmail.getText().toString();
                 String password = signupPassword.getText().toString();
+                String name = signupName.getText().toString();
+                String exp = signupExp.getText().toString();
+                String charge = signupCharge.getText().toString();
+                String time = signupTime.getText().toString();
+                String degree = signupDegree.getText().toString();
+
+
 
                 if(validateEmail() && validatePassword()){
-                    HelperClass helperClass = new HelperClass(email, password);
+                    HelperClass helperClass = new HelperClass(email, password, name, exp, charge, time, degree);
                     reference.child(email.replace(".",",")).setValue(helperClass);
                     Toast.makeText(doctor_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
 

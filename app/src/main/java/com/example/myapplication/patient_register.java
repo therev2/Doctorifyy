@@ -67,7 +67,7 @@ public class patient_register extends AppCompatActivity {
                 String password = signupPassword.getText().toString();
 
                 if(validateEmail() && validatePassword()){
-                    HelperClass helperClass = new HelperClass(email, password);
+                    HelperClass2 helperClass = new HelperClass2(email, password);
                     reference.child(email.replace(".", ",")).setValue(helperClass);
 
                     Toast.makeText(patient_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();

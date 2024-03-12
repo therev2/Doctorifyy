@@ -2,13 +2,14 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     EditText loginEmail, loginPassword;
     Button loginButton;
 
+//    CheckBox rememberMeCheckbox;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -52,15 +55,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        login_btn = findViewById(R.id.klop);
-//        login_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(MainActivity.this, "Login Successful" , Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(MainActivity.this, AppointmentPage.class);
-//                startActivity(intent);
-//            }
-//        });
 
         signup = findViewById(R.id.O);
         signup.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +80,22 @@ public class MainActivity extends AppCompatActivity {
         loginEmail = findViewById(R.id.loginemail);
         loginPassword = findViewById(R.id.loginpass);
         loginButton = findViewById(R.id.klop);
+//        rememberMeCheckbox = findViewById(R.id.rememberbox);
+
+        // Check if Remember Me is selected
+//        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+//        boolean rememberMe = prefs.getBoolean("rememberMe", false);
+//        if (rememberMe) {
+//            String savedEmail = prefs.getString("email", "");
+//            String savedPassword = prefs.getString("password", "");
+//            if (!savedEmail.isEmpty() && !savedPassword.isEmpty()) {
+//                loginEmail.setText(savedEmail);
+//                loginPassword.setText(savedPassword);
+//                // Automatically attempt login
+//                attemptLogin(savedEmail, savedPassword);
+//            }
+//        }
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,6 +220,49 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+//    public void attemptLogin(String saved_email,String saved_password){
+//        String userUseremail = saved_email.toString().trim();
+//        String userPassword = saved_password.toString().trim();
+//
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("patient");
+//        Query checkUserDatabase = reference.orderByChild("email").equalTo(userUseremail);
+//
+//        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                if (snapshot.exists()){
+//                    loginEmail.setError(null);
+//                    String passwordFromDB = snapshot.child(userUseremail.replace(".",",")).child("password").getValue(String.class);
+//
+//                    if(passwordFromDB.equals(userPassword)){
+//                        loginEmail.setError(null);
+//                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(MainActivity.this, HomePage.class);
+//                        startActivity(intent);
+//                    }else {
+//                        loginPassword.setError("invalid Credentials");
+//                        loginPassword.requestFocus();
+//                    }
+//                }else {
+//                    loginEmail.setError("User does not exist");
+//                    loginEmail.requestFocus();
+//
+//                }
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//
+//    }
+//
+//
 
 
 

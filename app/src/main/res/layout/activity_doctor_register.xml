@@ -84,14 +84,14 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="EMAIL:"
+                        android:text="NAME:"
                         android:alpha="0.9"/>
                     <EditText
-                        android:id="@+id/email_doc"
+                        android:id="@+id/name_doc"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"/>
+                        android:inputType="text"/>
 
 
                     <!--            android:drawableEnd="@drawable/ic_baseline_done_24"/>-->
@@ -105,15 +105,15 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PASSWORD:"
+                        android:text="EMAIL:"
                         android:alpha="0.9"/>
 
                     <EditText
-                        android:id="@+id/pass_doc"
+                        android:id="@+id/email_doc"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword"/>
+                        android:inputType="textEmailAddress"/>
                     <View
                         android:id="@+id/J765534"
 
@@ -124,12 +124,12 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ENTER YOUR NAME: "
+                        android:text="PASSWORD:"
                         android:alpha="0.9"/>
 
 
                     <EditText
-                        android:id="@+id/pass_"
+                        android:id="@+id/pass_doc"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
                         android:alpha="0.9"/>
 
                     <EditText
-                        android:id="@+id/pa"
+                        android:id="@+id/exp_doc"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
 
 
                     <EditText
-                        android:id="@+id/pass"
+                        android:id="@+id/charge_doc"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -194,7 +194,7 @@
 
 
                     <EditText
-                        android:id="@+id/pass_223"
+                        android:id="@+id/time_doc"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -215,7 +215,7 @@
                         android:text="DEGREE:"
                         android:alpha="0.9"/>
                     <EditText
-                        android:id="@+id/pass_12"
+                        android:id="@+id/degree_doc"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
