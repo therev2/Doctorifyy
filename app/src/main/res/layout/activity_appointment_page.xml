@@ -19,7 +19,9 @@
             android:id="@+id/specilist_complete_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"/>
+            android:hint=""
+            android:inputType="none"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -39,19 +41,34 @@
             android:textSize="16dp" />
 
 
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:contentDescription="select age"
+            android:hint=""
+            android:minHeight="48dp"
+            tools:ignore="EditableContentDescCheck" />
 
 
     </LinearLayout>
+
 
     <Button
         android:layout_marginTop="220dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Select Day"
+        android:id="@+id/Day_select"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="280dp"
         android:text="Location"
         android:id="@+id/Search_location_button"/>
 
@@ -59,7 +76,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="360dp"
         android:background="@color/black"/>
 
     <LinearLayout
@@ -71,7 +88,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="360dp"
             android:text="My Appointments"
             android:textSize="25dp"
             android:textStyle="bold" />

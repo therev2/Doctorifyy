@@ -1,13 +1,16 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -25,6 +28,8 @@ public class AppointmentPage extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItems;
     Button location_search_btn;
+    Button sel_day;
+
     @SuppressLint({"WrongViewCast", "CutPasteId", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +68,40 @@ public class AppointmentPage extends AppCompatActivity {
         });
 
 
+        sel_day = findViewById(R.id.Day_select);
+
+        sel_day.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DayselectPopup();
+            }
+        });
+
+
 
 
 
     }
+
+    private void DayselectPopup(){
+        // Get the current date
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+        // Create a DatePickerDialog instance with the appropriate constructor
+        DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                // Set the selected date to the TextView or any other UI component
+                sel_day.setText(String.valueOf(dayOfMonth) + "/" + String.valueOf(month + 1) + "/" + String.valueOf(year));
+            }
+        }, year, month, dayOfMonth); // Provide the initial year, month, and day of the month
+
+        // Show the DatePickerDialog
+        dialog.show();
+    }
+
 
 }
