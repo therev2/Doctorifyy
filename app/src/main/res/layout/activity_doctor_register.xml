@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".doctor_register">
 
     <ScrollView
@@ -59,6 +60,8 @@
                     android:orientation="vertical"
                     android:padding="28dp">
 
+
+
                     <TextView
                         android:id="@+id/E"
                         android:layout_width="wrap_content"
@@ -74,11 +77,50 @@
                         android:layout_height="wrap_content"
                         android:text="SIGNUP AS A DOCTOR"
                         android:alpha="0.9"/>
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"/>
+
+
+
+    <ImageView
+        android:id="@+id/upload_img"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="200dp"/>
                     <View
-                        android:id="@+id/G"
+                        android:id="@+id/J76587567"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"/>
+
+
+                    <Button
+                        android:id="@+id/browse_btn"
+                        android:layout_width="347dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="Browse" />
+
+                    <TextView
+                        android:id="@+id/K267"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text=" ADD YOUR IMAGE():"
+                        android:alpha="0.9"/>
+
+
+                    <View
+                        android:id="@+id/Gclass"
 
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"/>
+
                     <TextView
                         android:id="@+id/H"
 
@@ -136,7 +178,7 @@
                         android:inputType="textPersonName"/>
 
                     <View
-                        android:id="@+id/J765"
+                        android:id="@+id/J765875674"
 
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"/>
