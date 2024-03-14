@@ -94,7 +94,7 @@ public class doctor_register extends AppCompatActivity {
                     reference.child(email.replace(".",",")).setValue(helperClass);
                     Toast.makeText(doctor_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(doctor_register.this, MainActivity.class);
+                    Intent intent = new Intent(doctor_register.this, doc_home_page2.class);
                     startActivity(intent);
 
                 }
