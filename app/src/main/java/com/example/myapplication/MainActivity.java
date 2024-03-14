@@ -25,19 +25,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity {
     TextView are_doc;
-
-//    Button login_btn;
-
     TextView signup;
-
     EditText loginEmail, loginPassword;
     Button loginButton;
-
-//    CheckBox rememberMeCheckbox;
-
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -80,34 +73,16 @@ public class MainActivity extends AppCompatActivity {
         loginEmail = findViewById(R.id.loginemail);
         loginPassword = findViewById(R.id.loginpass);
         loginButton = findViewById(R.id.klop);
-//        rememberMeCheckbox = findViewById(R.id.rememberbox);
-
-        // Check if Remember Me is selected
-//        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-//        boolean rememberMe = prefs.getBoolean("rememberMe", false);
-//        if (rememberMe) {
-//            String savedEmail = prefs.getString("email", "");
-//            String savedPassword = prefs.getString("password", "");
-//            if (!savedEmail.isEmpty() && !savedPassword.isEmpty()) {
-//                loginEmail.setText(savedEmail);
-//                loginPassword.setText(savedPassword);
-//                // Automatically attempt login
-//                attemptLogin(savedEmail, savedPassword);
-//            }
-//        }
-
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!validateEmail() | !validatePassword()){
+                if (!validateEmail() | !validatePassword()) {
 
                 } else {
                     checkEmail();
                 }
             }
         });
-
 
 
     }
@@ -122,10 +97,13 @@ public class MainActivity extends AppCompatActivity {
 
     public Boolean validateEmail() {
         String val = loginEmail.getText().toString();
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             loginEmail.setError("Email cannot be empty");
             return false;
-        }else {
+        } else if (!properformat()) {
+            loginEmail.setError("Invalid Format");
+            return false;
+        } else {
             loginEmail.setError(null);
             boolean result = true;
             for (int i = 0; i < val.length(); i++) {
@@ -135,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
             }
-            if (result){
+            if (result) {
                 return true;
             } else {
                 loginEmail.setError("Email can only be alphanumberic");
@@ -143,21 +121,31 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    public boolean properformat() {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
 
+        Pattern pattern = Pattern.compile(emailRegex);
+        String val = loginEmail.getText().toString();
+
+        Matcher matcher = pattern.matcher(val);
+
+        return matcher.matches();
     }
 
     public Boolean validatePassword() {
         String val = loginPassword.getText().toString();
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             loginPassword.setError("Password cannot be empty");
             return false;
-        }else {
+        } else {
             loginPassword.setError(null);
-            if (val.isEmpty()){
+            if (val.isEmpty()) {
                 loginPassword.setError("Password cannot be empty");
                 return false;
-            }else {
+            } else {
                 loginPassword.setError(null);
                 boolean result = true;
                 for (int i = 0; i < val.length(); i++) {
@@ -167,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                 }
-                if (result){
+                if (result) {
                     return true;
                 } else {
                     loginPassword.setError("Password can only be alphanumberic");
@@ -180,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void checkEmail(){
+    public void checkEmail() {
         String userUseremail = loginEmail.getText().toString().trim();
         String userPassword = loginPassword.getText().toString().trim();
 
@@ -191,20 +179,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (snapshot.exists()){
+                if (snapshot.exists()) {
                     loginEmail.setError(null);
-                    String passwordFromDB = snapshot.child(userUseremail.replace(".",",")).child("password").getValue(String.class);
+                    String passwordFromDB = snapshot.child(userUseremail.replace(".", ",")).child("password").getValue(String.class);
 
-                    if(passwordFromDB.equals(userPassword)){
+                    if (passwordFromDB.equals(userPassword)) {
                         loginEmail.setError(null);
                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, HomePage.class);
                         startActivity(intent);
-                    }else {
+                    } else {
                         loginPassword.setError("invalid Credentials");
                         loginPassword.requestFocus();
                     }
-                }else {
+                } else {
                     loginEmail.setError("User does not exist");
                     loginEmail.requestFocus();
 
@@ -263,7 +251,6 @@ public class MainActivity extends AppCompatActivity {
 //    }
 //
 //
-
 
 
 }

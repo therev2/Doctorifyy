@@ -3,7 +3,8 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -25,9 +26,6 @@ public class patient_register extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reference;
 
-
-//    com.google.android.material.button.MaterialButton signup_btn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,17 +37,6 @@ public class patient_register extends AppCompatActivity {
             return insets;
 
         });
-
-//signup_btn and signupButton both are same thing
-
-//        signup_btn = findViewById(R.id.signuppat);
-//        signup_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(patient_register.this, MainActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
 
         signupEmail = findViewById(R.id.email_pat);
@@ -95,6 +82,10 @@ public class patient_register extends AppCompatActivity {
         if (val.isEmpty()) {
             signupEmail.setError("Email cannot be empty");
             return false;
+        } else if (!properformat()) {
+            signupEmail.setError("Invalid Format");
+            return false;
+
         } else {
             signupEmail.setError(null);
             boolean result = true;
@@ -112,6 +103,18 @@ public class patient_register extends AppCompatActivity {
                 return false;
             }
         }
+    }
+
+    public boolean properformat() {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+
+        Pattern pattern = Pattern.compile(emailRegex);
+        String val = signupEmail.getText().toString();
+
+        Matcher matcher = pattern.matcher(val);
+
+        return matcher.matches();
     }
 
 
