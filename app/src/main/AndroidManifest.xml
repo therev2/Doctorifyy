@@ -22,6 +22,9 @@
 
         </activity>
         <activity
+            android:name=".Doc_home_page"
+            android:exported="false" />
+        <activity
             android:name=".HomePage"
             android:exported="false" />
         <activity
