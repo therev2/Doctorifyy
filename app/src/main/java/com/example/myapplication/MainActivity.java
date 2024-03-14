@@ -209,48 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    public void attemptLogin(String saved_email,String saved_password){
-//        String userUseremail = saved_email.toString().trim();
-//        String userPassword = saved_password.toString().trim();
-//
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("patient");
-//        Query checkUserDatabase = reference.orderByChild("email").equalTo(userUseremail);
-//
-//        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                if (snapshot.exists()){
-//                    loginEmail.setError(null);
-//                    String passwordFromDB = snapshot.child(userUseremail.replace(".",",")).child("password").getValue(String.class);
-//
-//                    if(passwordFromDB.equals(userPassword)){
-//                        loginEmail.setError(null);
-//                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(MainActivity.this, HomePage.class);
-//                        startActivity(intent);
-//                    }else {
-//                        loginPassword.setError("invalid Credentials");
-//                        loginPassword.requestFocus();
-//                    }
-//                }else {
-//                    loginEmail.setError("User does not exist");
-//                    loginEmail.requestFocus();
-//
-//                }
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//    }
-//
-//
+
 
 
 }
