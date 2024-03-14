@@ -45,6 +45,7 @@
             android:textStyle="bold" />
 
     </LinearLayout>
+    <!--            android:drawableEnd="@drawable/ic_baseline_done_24"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
