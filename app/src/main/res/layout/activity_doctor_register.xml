@@ -58,7 +58,7 @@
 
 
                         <ImageView
-                            android:id="@+id/upload_img"
+                            android:id="@+id/uploaded_img"
                             android:layout_width="300dp"
                             android:layout_height="200dp"
                             android:layout_gravity="center"

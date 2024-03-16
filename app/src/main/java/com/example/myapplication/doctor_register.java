@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,18 +11,32 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultCaller;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,7 +46,10 @@ public class doctor_register extends AppCompatActivity {
 
 
     EditText signupEmail, signupPassword, signupName, signupExp, signupCharge, signupTime, signupDegree;
-    Button signupButton;
+    Button signupButton, browseBtn;
+    ImageView uplodedImage;
+    String imageURL;
+    Uri uri;
     FirebaseDatabase database;
     DatabaseReference reference;
 
@@ -84,35 +103,97 @@ public class doctor_register extends AppCompatActivity {
         signupCharge = findViewById(R.id.charge_doc);
         signupTime = findViewById(R.id.time_doc);
         signupDegree = findViewById(R.id.degree_doc);
+        browseBtn = findViewById(R.id.browse_btn);
+        uplodedImage = findViewById(R.id.uploaded_img);
+
+        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK){
+                            Intent data = result.getData();
+                            uri = data.getData();
+                            uplodedImage.setImageURI(uri);
+                        } else {
+                            Toast.makeText(doctor_register.this,"No Image Selected", Toast.LENGTH_SHORT);
+                        }
+
+                    }
+                }
+        );
+
+        browseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent photoPicker = new Intent(Intent.ACTION_PICK);
+                photoPicker.setType("image/*");
+                activityResultLauncher.launch(photoPicker);
+            }
+        });
+
+
+
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                database = FirebaseDatabase.getInstance();
-                reference = database.getReference("doctor");
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Doctor Images")
+                        .child(uri.getLastPathSegment());
 
-                String email = signupEmail.getText().toString();
-                String password = signupPassword.getText().toString();
-                String name = signupName.getText().toString();
-                String exp = signupExp.getText().toString();
-                String charge = signupCharge.getText().toString();
-                String time = signupTime.getText().toString();
-                String degree = signupDegree.getText().toString();
-                String speacilist = item;
+                AlertDialog.Builder builder = new AlertDialog.Builder(doctor_register.this);
+                builder.setCancelable(false);
+//                builder.setView(R.layout.progress_layout)
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+                storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                        Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                        while (!uriTask.isComplete());
+                        Uri urlImage = uriTask.getResult();
+                        imageURL = urlImage.toString();
+
+                        database = FirebaseDatabase.getInstance();
+                        reference = database.getReference("doctor");
+
+                        String email = signupEmail.getText().toString();
+                        String password = signupPassword.getText().toString();
+                        String name = signupName.getText().toString();
+                        String exp = signupExp.getText().toString();
+                        String charge = signupCharge.getText().toString();
+                        String time = signupTime.getText().toString();
+                        String degree = signupDegree.getText().toString();
+                        String speacilist = item;
 
 
 
-                if(validateEmail() && validatePassword()){
-                    HelperClass helperClass = new HelperClass(email, password, name, exp, charge, time, degree, speacilist);
-                    reference.child(email.replace(".",",")).setValue(helperClass);
+                        if(validateEmail() && validatePassword()){
+                            HelperClass helperClass = new HelperClass(email, password, name, exp, charge, time, degree, speacilist, imageURL);
+                            reference.child(email.replace(".",",")).setValue(helperClass);
 
-                    Toast.makeText(doctor_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(doctor_register.this, doc_landing_page.class);
-                    startActivity(intent);
+                            Toast.makeText(doctor_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(doctor_register.this, doc_landing_page.class);
+                            startActivity(intent);
 
 
-                }
+                        }
+                        dialog.dismiss();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        dialog.dismiss();
+                    }
+                });
+
+
+
+
 
             }
         });
