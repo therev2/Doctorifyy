@@ -331,7 +331,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Make An Appointment"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="250dp"
                 android:textSize="18dp"
                 android:fontFamily="@font/regular_semi_bold"
                 android:backgroundTint="@color/my_primary"/>

@@ -341,7 +341,8 @@
                 android:fontFamily="@font/regular_bold"
                 android:text="Top Rate"
                 android:textColor="@color/black"
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                tools:ignore="TextSizeCheck" />
 
             <LinearLayout
                 android:layout_width="match_parent"

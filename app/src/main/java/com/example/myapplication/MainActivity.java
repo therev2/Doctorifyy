@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public Boolean validateEmail() {
-        String val = loginEmail.getText().toString();
+        String val = loginEmail.getText().toString().trim();
         if (val.isEmpty()) {
             loginEmail.setError("Email cannot be empty");
             return false;
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         Pattern pattern = Pattern.compile(emailRegex);
-        String val = loginEmail.getText().toString();
+        String val = loginEmail.getText().toString().trim();
 
         Matcher matcher = pattern.matcher(val);
 
