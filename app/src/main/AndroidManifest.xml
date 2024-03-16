@@ -21,7 +21,7 @@
             android:exported="false" />
         <activity
             android:name=".new_otp_login"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".HomePage"
             android:exported="false" />

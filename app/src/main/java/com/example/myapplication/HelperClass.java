@@ -4,7 +4,7 @@ public class HelperClass {
 
     String name, email, password, exp, charge, time, degree, speacilist;
 
-    public HelperClass(String email, String password, String name, String exp, String charge, String time, String degree, String specilist) {
+    public HelperClass(String email, String password, String name, String exp, String charge, String time, String degree, String speacilist) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -12,7 +12,7 @@ public class HelperClass {
         this.charge = charge;
         this.time = time;
         this.degree = degree;
-        this.speacilist = specilist;
+        this.speacilist = speacilist;
     }
 
     public String getName() {
@@ -76,7 +76,7 @@ public class HelperClass {
     }
 
     public void setSpeacilist(String speacilist) {
-        this.degree = speacilist;
+        this.speacilist = speacilist;
     }
 
 
