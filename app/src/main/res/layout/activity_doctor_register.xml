@@ -76,6 +76,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
+                            android:letterSpacing="0.06"
+                            android:fontFamily="@font/regular_semi_bold"
                             android:text="Browse" />
 
                         <TextView
@@ -84,8 +86,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:alpha="0.9"
-                            android:text=" ADD YOUR IMAGE():" />
+                            android:alpha="1"
+                            android:fontFamily="@font/regular_semi_bold"
+                            android:text=" ADD YOUR IMAGE:" />
 
 
                         <View
@@ -149,7 +152,6 @@
 
                         <EditText
                             android:id="@+id/pass_doc"
-
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName" />
@@ -276,6 +278,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
+                            android:fontFamily="@font/regular_semi_bold"
+                            android:letterSpacing="0.06"
                             android:layout_gravity="center"
                             android:text="Finish" />
 

@@ -170,8 +170,8 @@ public class DocLoginActivity extends AppCompatActivity {
 
 //                        --------->IMP
 //                        page where to move doc after login
-//                        Intent intent = new Intent(DocLoginActivity.this, AppointmentPage.class);
-//                        startActivity(intent);
+                        Intent intent = new Intent(DocLoginActivity.this, doc_home_page2.class);
+                        startActivity(intent);
 
 
                     }else {

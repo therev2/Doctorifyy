@@ -92,10 +92,11 @@ public class doctor_register extends AppCompatActivity {
                 if(validateEmail() && validatePassword()){
                     HelperClass helperClass = new HelperClass(email, password, name, exp, charge, time, degree, speacilist);
                     reference.child(email.replace(".",",")).setValue(helperClass);
-                    Toast.makeText(doctor_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
 
+                    Toast.makeText(doctor_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(doctor_register.this, doc_home_page2.class);
                     startActivity(intent);
+
 
                 }
 
