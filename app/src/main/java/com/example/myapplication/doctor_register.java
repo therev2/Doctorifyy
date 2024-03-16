@@ -19,6 +19,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class doctor_register extends AppCompatActivity {
 
     String[] specialist_array = {"Diabetes Management", "Diet and Nutrition", "Physiotherapist", "ENT Specialist",  "Eyes specialist", "Pulmonologist", "Dentist", "Sexual Health",  "Women's Health ",  "Gastroenterologist", "Cardiologist", "Skin and Hair",  "Child Specialist", "General physician"};
@@ -116,11 +119,14 @@ public class doctor_register extends AppCompatActivity {
 
 
     public Boolean validateEmail() {
-        String val = signupEmail.getText().toString();
+        String val = signupEmail.getText().toString().trim();
         if (val.isEmpty()) {
             signupEmail.setError("Email cannot be empty");
             return false;
-        } else {
+        }else if (!properformat()) {
+            signupEmail.setError("Invalid Format");
+            return false;}
+        else {
             signupEmail.setError(null);
             boolean result = true;
             for (int i = 0; i < val.length(); i++) {
@@ -145,7 +151,7 @@ public class doctor_register extends AppCompatActivity {
         if (val.isEmpty()) {
             signupPassword.setError("Password cannot be empty");
             return false;
-        } else {
+        }   else {
             signupPassword.setError(null);
             if (val.isEmpty()) {
                 signupPassword.setError("Password cannot be empty");
@@ -171,6 +177,19 @@ public class doctor_register extends AppCompatActivity {
 
         }
 
+
+    }
+
+    public boolean properformat() {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+
+        Pattern pattern = Pattern.compile(emailRegex);
+        String val = signupEmail.getText().toString().trim();
+
+        Matcher matcher = pattern.matcher(val);
+
+        return matcher.matches();
 
     }
 
