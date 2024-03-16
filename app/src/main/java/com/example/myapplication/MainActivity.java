@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,12 +34,26 @@ public class MainActivity extends AppCompatActivity {
     TextView signup;
     EditText loginEmail, loginPassword;
     Button loginButton;
+    Button b;
+    String per1[] = {"android.permission.ACCESS_COARSE_LOCATION"};
+    String per2[] = {"android.permission.ACCESS_FINE_LOCATION"};
+    String per3[] = {"android.permission.ACCESS_BACKGROUND_LOCATION"};
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        b = findViewById(R.id.klop);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestPermissions(per1, 80);
+                requestPermissions(per2, 80);
+                requestPermissions(per3, 80);
+            }
+        });
 
 //        linking all activities
 
@@ -209,7 +224,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 80) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                Toast.makeText(this, "permission granted", Toast.LENGTH_SHORT).show();
+        }
 
 
-
+    }
 }

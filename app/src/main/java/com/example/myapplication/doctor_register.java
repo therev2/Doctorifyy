@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -36,12 +38,21 @@ public class doctor_register extends AppCompatActivity {
     ArrayAdapter<String> adapterItems;
 
     String item;
-
+    Button b;
+    String per[]={"android.permission.READ_MEDIA_IMAGES"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_doctor_register);
+        b=findViewById(R.id.browse_btn);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestPermissions(per,80);
+            }
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -177,7 +188,6 @@ public class doctor_register extends AppCompatActivity {
 
         }
 
-
     }
 
     public boolean properformat() {
@@ -193,5 +203,13 @@ public class doctor_register extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode==80)
+        {
+            if (grantResults[0]== PackageManager.PERMISSION_GRANTED)
+                Toast.makeText(this,"permission granted",Toast.LENGTH_SHORT).show();
+        }
+    }
 }
