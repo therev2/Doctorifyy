@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".doc_home_page2">
+    tools:context=".doc_landing_page">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,10 +16,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -41,16 +40,17 @@
                     android:id="@+id/imageView2"
                     android:layout_width="157dp"
                     android:layout_height="154dp"
+                    android:src="@drawable/doctor"
                     android:layout_marginBottom="7dp"
                     android:background="@drawable/btn_total_round"
                     android:clipToOutline="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:ignore="MissingConstraints"
                     tools:layout_editor_absoluteX="133dp"
-                    tools:srcCompat="@tools:sample/avatars" />
+                     />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+        </RelativeLayout>
 
     </ScrollView>
 
