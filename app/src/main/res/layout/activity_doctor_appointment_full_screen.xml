@@ -26,10 +26,13 @@
             android:paddingTop="70dp">
 
             <ImageView
+                style="@style/roundedImageViewRounded"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
-                android:background="@drawable/edit_text_rounded_corner"
+                android:background="@drawable/edit_img_rounded_corner"
                 android:clipToOutline="true"
+                android:id="@+id/doc_dp"
+
                 android:src="@drawable/doctor"></ImageView>
 
             <LinearLayout

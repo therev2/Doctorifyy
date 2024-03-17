@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
@@ -37,7 +39,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
         HelperClass helperclass = list.get(position);
         holder.Name.setText("Dr."+helperclass.getName());
         holder.Spec.setText(helperclass.getSpeacilist());
-
+        Glide.with(context).load(list.get(position).getImage()).into(holder.doc_photo);
 
 
         holder.itemView.setOnClickListener(v -> {
@@ -45,6 +47,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
             Intent intent = new Intent(context, doctor_appointment_full_screen.class);
             intent.putExtra("username","Dr."+helperclass.getName());
             intent.putExtra("specialist",helperclass.getSpeacilist());
+            intent.putExtra("Image",list.get(position).getImage());
 //            intent.putExtra("status",helperclass.status):
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
