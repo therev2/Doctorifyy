@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     CheckBox checkBox_btn;
     public static final String SHARED_PREFS="sharedPrefs";
+    public static final String SHARED_PREFS_DOC="sharedPrefs_doc";
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        linking all activities
         checkBox();
+        checkBox_Doc();
 
         are_doc = findViewById(R.id.are_you_doc);
         are_doc.setOnClickListener(new View.OnClickListener() {
@@ -112,10 +115,21 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkBox() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String check = sharedPreferences.getString("name", "");
+        String check = sharedPreferences.getString("remember", "");
         if (check.equals("true")){
             Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, HomePage.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    private void checkBox_Doc() {
+        SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS_DOC, MODE_PRIVATE);
+        String check = sharedPreferences_doc.getString("remember", "");
+        if (check.equals("true")){
+            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, doc_landing_page.class);
             startActivity(intent);
             finish();
         }
@@ -223,7 +237,8 @@ public class MainActivity extends AppCompatActivity {
                             SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                            editor.putString("name", "true");
+                            editor.putString("remember", "true");
+                            editor.putString("email", userUseremail);
                             editor.apply();
                         }
 

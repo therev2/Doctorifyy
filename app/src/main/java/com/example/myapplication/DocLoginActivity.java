@@ -82,7 +82,7 @@ public class DocLoginActivity extends AppCompatActivity {
 
     private void checkBox_Doc() {
         SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String check = sharedPreferences_doc.getString("name", "");
+        String check = sharedPreferences_doc.getString("remember", "");
         if (check.equals("true")){
             Toast.makeText(DocLoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(DocLoginActivity.this, doc_landing_page.class);
@@ -190,7 +190,8 @@ public class DocLoginActivity extends AppCompatActivity {
                             SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences_doc.edit();
 
-                            editor.putString("name", "true");
+                            editor.putString("remember", "true");
+                            editor.putString("doc_email", userUseremail);
                             editor.apply();
                         }
 
