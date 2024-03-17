@@ -39,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
     String per2[] = {"android.permission.ACCESS_FINE_LOCATION"};
     String per3[] = {"android.permission.ACCESS_BACKGROUND_LOCATION"};
 
+    CheckBox checkBox_btn;
+    public static final String SHARED_PREFS="sharedPrefs";
+
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 //        linking all activities
+        checkBox();
 
         are_doc = findViewById(R.id.are_you_doc);
         are_doc.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
         loginEmail = findViewById(R.id.loginemail);
         loginPassword = findViewById(R.id.loginpass);
         loginButton = findViewById(R.id.klop);
+        checkBox_btn = findViewById(R.id.remember_me_chkb);
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +108,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void checkBox() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        String check = sharedPreferences.getString("name", "");
+        if (check.equals("true")){
+            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, HomePage.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
 
@@ -200,6 +219,14 @@ public class MainActivity extends AppCompatActivity {
 
                     if (passwordFromDB.equals(userPassword)) {
                         loginEmail.setError(null);
+                        if(checkBox_btn.isChecked()){
+                            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            editor.putString("name", "true");
+                            editor.apply();
+                        }
+
                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, HomePage.class);
                         startActivity(intent);
