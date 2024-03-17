@@ -1,16 +1,18 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import static android.service.controls.ControlsProviderService.TAG;
 
-import android.content.Intent;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import android.util.Log;
+
 
 public class doctor_appointment_full_screen extends AppCompatActivity {
 
@@ -29,7 +31,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
     TextView doctor_specialist;
     ImageView doc_profile;
     Button appointmentButton;
-
+    String docccc;
     FirebaseDatabase database;
     DatabaseReference reference;
 
@@ -45,7 +47,9 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
         doctor_name = findViewById(R.id.doc_namee);
         doctor_specialist = findViewById(R.id.doc_specialistt);
         doc_profile = findViewById(R.id.doc_dp);
+
         doctor_name.setText(getIntent().getStringExtra("username"));
+        docccc = getIntent().getStringExtra("username");
         doctor_specialist.setText(getIntent().getStringExtra("specialist"));
         Glide.with(doctor_appointment_full_screen.this).load(getIntent().getStringExtra("Image")).into(doc_profile);
 
@@ -69,8 +73,9 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
                 HelperClass3 helperClass = new HelperClass3(pat_mail, doc_mail ,date ,time);
                 reference.child(doc_mail.replace(".",",")).setValue(helperClass);
 
-                Toast.makeText(doctor_appointment_full_screen.this, "Appointment Successful", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(doctor_appointment_full_screen.this, booked_confirm.class);
+                intent.putExtra("doctor_name",docccc);
+                startActivity(intent);
 
             }
         });
