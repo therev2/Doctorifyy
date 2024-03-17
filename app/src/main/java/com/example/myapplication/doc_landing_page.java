@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -28,6 +29,7 @@ public class doc_landing_page extends AppCompatActivity {
     DatabaseReference database;
     Myadapter_Doc myadapter_doc;
     ArrayList<HelperClass3> list_doc;
+    TextView doctor_nam_karan;
     public static final String SHARED_PREFS="sharedPrefs_doc";
 
 
@@ -42,7 +44,8 @@ public class doc_landing_page extends AppCompatActivity {
         String Email_of_doc = sharedPreferences_doc.getString("doc_email", "");
 
 
-
+        doctor_nam_karan = findViewById(R.id.doccomo);
+        doctor_nam_karan.setText(getIntent().getStringExtra("docu_name"));
         recyclerView_doc = findViewById(R.id.recyclerView_doc);
         database = FirebaseDatabase.getInstance().getReference("appointment");
         recyclerView_doc.setHasFixedSize(true);
