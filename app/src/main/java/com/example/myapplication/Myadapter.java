@@ -47,6 +47,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
             Intent intent = new Intent(context, doctor_appointment_full_screen.class);
             intent.putExtra("username","Dr."+helperclass.getName());
             intent.putExtra("specialist",helperclass.getSpeacilist());
+            intent.putExtra("doc_mail",helperclass.getEmail());
             intent.putExtra("Image",list.get(position).getImage());
 //            intent.putExtra("status",helperclass.status):
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -233,12 +236,13 @@ public class MainActivity extends AppCompatActivity {
 
                     if (passwordFromDB.equals(userPassword)) {
                         loginEmail.setError(null);
+                        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("email", userUseremail);
+                        editor.apply();
+                        String another = sharedPreferences.getString("email", "");
                         if(checkBox_btn.isChecked()){
-                            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-
                             editor.putString("remember", "true");
-                            editor.putString("email", userUseremail);
                             editor.apply();
                         }
 
