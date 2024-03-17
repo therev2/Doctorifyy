@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,14 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
         HelperClass helperclass = list.get(position);
         holder.Name.setText(helperclass.getName());
         holder.Spec.setText(helperclass.getSpeacilist());
-
+        holder.itemView.setOnClickListener(v -> {
+            //navigate to chat activity;
+            Intent intent = new Intent(context, chat_activity.class);
+            intent.putExtra("username",helperclass.getName());
+//            intent.putExtra("status",helperclass.status):
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        });
     }
 
     @Override
