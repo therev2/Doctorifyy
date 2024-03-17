@@ -56,7 +56,13 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
+
         return list.size();
+    }
+
+    public void searchDataList(ArrayList<HelperClass> filterlist){
+        list = filterlist;
+        notifyDataSetChanged();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
