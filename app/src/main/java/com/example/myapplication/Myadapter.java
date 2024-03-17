@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,12 +35,16 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         HelperClass helperclass = list.get(position);
-        holder.Name.setText(helperclass.getName());
+        holder.Name.setText("Dr."+helperclass.getName());
         holder.Spec.setText(helperclass.getSpeacilist());
+
+
+
         holder.itemView.setOnClickListener(v -> {
             //navigate to chat activity;
-            Intent intent = new Intent(context, chat_activity.class);
-            intent.putExtra("username",helperclass.getName());
+            Intent intent = new Intent(context, doctor_appointment_full_screen.class);
+            intent.putExtra("username","Dr."+helperclass.getName());
+            intent.putExtra("specialist",helperclass.getSpeacilist());
 //            intent.putExtra("status",helperclass.status):
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
@@ -54,12 +59,13 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView Name, Spec;
-
+        ImageView doc_photo;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             Name = itemView.findViewById(R.id.docName);
             Spec = itemView.findViewById(R.id.docSpec);
+            doc_photo = itemView.findViewById(R.id.recImage);
 
 
         }

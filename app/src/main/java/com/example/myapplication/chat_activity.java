@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class chat_activity extends AppCompatActivity {
     TextView doc_name;
     TextView status;
+    String chatroomId;
     ImageButton back_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,9 @@ public class chat_activity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_chat);
 
+
+
+        //setting the doctor username on chat screen//
         doc_name = findViewById(R.id.doctor_name);
         doc_name.setText(getIntent().getStringExtra("username"));
 
@@ -28,6 +32,8 @@ public class chat_activity extends AppCompatActivity {
         back_btn.setOnClickListener(v -> {
             getOnBackPressedDispatcher();
         });
+
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
