@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -25,6 +28,8 @@ public class doc_landing_page extends AppCompatActivity {
     DatabaseReference database;
     Myadapter_Doc myadapter_doc;
     ArrayList<HelperClass3> list_doc;
+    public static final String SHARED_PREFS="sharedPrefs_doc";
+
 
 
     @Override
@@ -32,6 +37,9 @@ public class doc_landing_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_doc_landing_page);
+
+        SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        String Email_of_doc = sharedPreferences_doc.getString("doc_email", "");
 
 
 
@@ -44,12 +52,15 @@ public class doc_landing_page extends AppCompatActivity {
         myadapter_doc = new Myadapter_Doc(this,list_doc);
         recyclerView_doc.setAdapter(myadapter_doc);
 
+
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     HelperClass3 helper = dataSnapshot.getValue(HelperClass3.class);
                     list_doc.add(helper);
+                    searchList(Email_of_doc);
+
 
                 }
                 myadapter_doc.notifyDataSetChanged();
@@ -67,5 +78,14 @@ public class doc_landing_page extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+    public void searchList(String text){
+        ArrayList<HelperClass3> searchList = new ArrayList<>();
+        for (HelperClass3 helperClass: list_doc){
+            if (helperClass.getDoc_email().toLowerCase().contains(text.toLowerCase())){
+                searchList.add(helperClass);
+            }
+        }
+        myadapter_doc.searchDataList(searchList);
     }
 }

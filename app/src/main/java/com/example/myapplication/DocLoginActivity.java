@@ -185,13 +185,14 @@ public class DocLoginActivity extends AppCompatActivity {
 
                     if(passwordFromDB.equals(userPassword)){
                         loginEmail.setError(null);
+                        SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences_doc.edit();
+                        editor.putString("doc_email", userUseremail);
+                        editor.apply();
 
                         if(checkBox_btn_doc.isChecked()){
-                            SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences_doc.edit();
 
                             editor.putString("remember", "true");
-                            editor.putString("doc_email", userUseremail);
                             editor.apply();
                         }
 

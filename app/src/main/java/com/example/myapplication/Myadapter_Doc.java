@@ -44,6 +44,11 @@ public class Myadapter_Doc extends RecyclerView.Adapter<Myadapter_Doc.MyViewHold
         return list_doc.size();
     }
 
+    public void searchDataList(ArrayList<HelperClass3> filterlist_doc){
+        list_doc = filterlist_doc;
+        notifyDataSetChanged();
+    }
+
     public static class MyViewHolder_Doc extends RecyclerView.ViewHolder{
 
         TextView pat_app_mail, app_date, app_time;
