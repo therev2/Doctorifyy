@@ -47,7 +47,7 @@ public class doc_landing_page extends AppCompatActivity {
 
 
         doctor_nam_karan = findViewById(R.id.doccomo);
-        doctor_nam_karan.setText(getIntent().getStringExtra("docu_name"));
+        doctor_nam_karan.setText("Dr."+ getIntent().getStringExtra("docu_name"));
         recyclerView_doc = findViewById(R.id.recyclerView_doc);
         database = FirebaseDatabase.getInstance().getReference("appointment");
         recyclerView_doc.setHasFixedSize(true);
