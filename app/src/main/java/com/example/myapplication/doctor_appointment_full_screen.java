@@ -49,6 +49,9 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     public void onClick(View v){
 
         date_for_database = (String) v.getTag();
+        Toast.makeText(doctor_appointment_full_screen.this, date_for_database,Toast.LENGTH_SHORT).show();
+
+
     }
 
 
