@@ -1,21 +1,18 @@
 package com.example.myapplication;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -101,6 +98,15 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         card4.setOnClickListener(this);
         card5.setOnClickListener(this);
 
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        onBackPressedDispatcher.addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Close the application
+                finishAffinity();
+            }
+        });
+
 
     }
 
@@ -113,5 +119,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         }
         myAdapter.searchDataList(searchList);
     }
+
 
 }
