@@ -24,7 +24,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -155,12 +158,47 @@ public class otp_screen extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     setInProgress(false);
                     Intent intent = new Intent(otp_screen.this, HomePage.class);
+                    String email = getIntent().getStringExtra("email");
+                    String password = getIntent().getStringExtra("password");
+                    String phoneNumber = getIntent().getStringExtra("phone");
+
+                    // Store the user data in Firebase Database
+                    storeUserData(phoneNumber, email, password);
+                    startActivity(intent);
+                    finish();
+
                     startActivity(intent);
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "OTP Verification failed", Toast.LENGTH_LONG).show();
+                    setInProgress(false); // Set progress to false
+                    verify_btn.setVisibility(View.VISIBLE); // Reset the visibility of verify_btn
                 }
             }
         });
+    }
+
+    private void storeUserData(String phoneNumber, String email, String password) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference("patient");
+
+        // Create a HashMap to store the user data
+        HashMap<String, Object> userData = new HashMap<>();
+        userData.put("phoneNumber", phoneNumber);
+        userData.put("email", email);
+        userData.put("password", password);
+
+        // Store the user data in the database
+        reference.child(email.replace(".", ",")).setValue(userData)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "User data stored successfully");
+                        } else {
+                            Log.e(TAG, "Error storing user data: " + task.getException());
+                        }
+                    }
+                });
     }
 }
