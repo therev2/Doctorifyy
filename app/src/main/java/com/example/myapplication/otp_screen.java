@@ -135,6 +135,8 @@ public class otp_screen extends AppCompatActivity {
 
                     runOnUiThread(() -> {
                         resend_otp.setEnabled(true);
+                        resend_otp.setText("Resend OTP");
+
                     });
                 }
             }
@@ -194,11 +196,12 @@ public class otp_screen extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "User data stored successfully");
+                            Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_LONG).show();
                         } else {
-                            Log.e(TAG, "Error storing user data: " + task.getException());
+                            Toast.makeText(getApplicationContext(), "Registration Failed", Toast.LENGTH_LONG).show();
                         }
-                    }
+                        }
+
                 });
     }
 }
