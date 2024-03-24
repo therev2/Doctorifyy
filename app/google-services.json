@@ -1,14 +1,14 @@
 {
   "project_info": {
-    "project_number": "700327731249",
-    "firebase_url": "https://doctorify-dac66-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "doctorify-dac66",
-    "storage_bucket": "doctorify-dac66.appspot.com"
+    "project_number": "1084574668453",
+    "firebase_url": "https://doctorifyy-709ef-default-rtdb.firebaseio.com",
+    "project_id": "doctorifyy-709ef",
+    "storage_bucket": "doctorifyy-709ef.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:700327731249:android:c722147129a02d8bf5b510",
+        "mobilesdk_app_id": "1:1084574668453:android:c163a399c48cfd51c75f4c",
         "android_client_info": {
           "package_name": "com.example.myapplication"
         }
@@ -16,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC3b7d2Uahdljtruv5wFVSz_4Ep7aiPvgI"
+          "current_key": "AIzaSyDVFX0agkILwaS2FPGW6O5Fho7vcv16Ca8"
         }
       ],
       "services": {
