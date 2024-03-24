@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +42,7 @@ public class otp_screen extends AppCompatActivity {
     TextView resend_otp;
     String verification_code;
     PhoneAuthProvider.ForceResendingToken ResendingToken;
+    public static final String SHARED_PREFS="sharedPrefs";
 
     Button verify_btn;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -200,6 +202,10 @@ public class otp_screen extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_LONG).show();
+                            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("remember", "true");
+                            editor.apply();
                         } else {
                             Toast.makeText(getApplicationContext(), "Registration Failed", Toast.LENGTH_LONG).show();
                         }
