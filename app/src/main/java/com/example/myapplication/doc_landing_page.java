@@ -1,8 +1,11 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,17 +37,35 @@ public class doc_landing_page extends AppCompatActivity {
     ArrayList<HelperClass3> list_doc;
     TextView doctorName;
     String doc_name,image_url;
+    Button logoutDoc;
 
     //initialised shared storage for doc
     public static final String SHARED_PREFS="sharedPrefs_doc";
 
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_doc_landing_page);
+
+        logoutDoc = findViewById(R.id.logout_doc);
+        logoutDoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(doc_landing_page.this,"Log out Successful",Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences_doc.edit();
+                editor.putString("doc_email", "null");
+                editor.apply();
+                Intent intent = new Intent(doc_landing_page.this, MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
 
         //getting doc email from shared preference and storing it in variable
         SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
@@ -55,8 +76,6 @@ public class doc_landing_page extends AppCompatActivity {
 
         //matching input email with database email
         Query checkUserDatabase = reference.orderByChild("email").equalTo(Email_of_doc);
-
-        System.out.println( Email_of_doc + "-----------------");
 
         checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
