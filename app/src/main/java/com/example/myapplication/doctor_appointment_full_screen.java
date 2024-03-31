@@ -31,7 +31,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     private String doctorNameString;
     private DatabaseReference reference;
     private String dateForDatabase = "";
-
+    private String kl;
     private static final String SHARED_PREFS = "sharedPrefs";
     private String selectedTime = "";
     private String patMail;
