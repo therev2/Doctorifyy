@@ -52,7 +52,6 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
 
         adapter.setOnItemClickListener((view, itemDate) -> {
             selectedDateItem = itemDate;
-            Toast.makeText(doctor_appointment_full_screen.this, "harshit", Toast.LENGTH_SHORT).show();
 
             // Update the selected position
             int clickedPosition = recyclerView.getChildAdapterPosition(view);
@@ -64,6 +63,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
         docProfile = findViewById(R.id.doc_dp);
         timeButton = findViewById(R.id.time_btn);
         appointmentButton = findViewById(R.id.Appointment_btn);
+        appointmentButton.setEnabled(false); // Initially disable the button
 
         timeButton.setOnClickListener(v -> openDialog());
 
@@ -122,6 +122,11 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
             int hour = hourOfDay % 12;
             String amPm = (hourOfDay / 12) == 0 ? "AM" : "PM";
             selectedTime = String.format("%02d:%02d %s", hour == 0 ? 12 : hour, minute, amPm);
+            if (!selectedTime.isEmpty() && selectedDateItem != null) {
+                appointmentButton.setEnabled(true);
+            } else {
+                appointmentButton.setEnabled(false);
+            }
 
             timeButton.setText(selectedTime);
         }, 0, 0, false);
