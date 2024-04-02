@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class doctor_appointment_full_screen extends AppCompatActivity implements View.OnClickListener {
+public class doctor_appointment_full_screen extends AppCompatActivity {
     private TextView doctorName;
     private TextView doctorSpecialist;
     private ImageView docProfile;
@@ -41,12 +41,6 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     private ItemDate selectedDateItem;
 
     @Override
-    public void onClick(View v) {
-        dateForDatabase = (String) v.getTag();
-        Toast.makeText(this, dateForDatabase, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_appointment_full_screen);
@@ -55,7 +49,6 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
         List<ItemDate> items = getDateItems();
         MyAdapterDate adapter = new MyAdapterDate(this, items);
         recyclerView.setAdapter(adapter);
-
 
         adapter.setOnItemClickListener((view, itemDate) -> {
             selectedDateItem = itemDate;
@@ -88,6 +81,18 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
             intent.putExtra("doctor_name", doctorNameString);
             intent.putExtra("timee", selectedTime);
             intent.putExtra("qr_code_data", patMail + "&" + docMail);
+
+            // Check if selectedDateItem and selectedTime are not empty or null
+            if (selectedDateItem != null && !selectedTime.isEmpty()) {
+                dateForDatabase = selectedDateItem.getDate() + " " + selectedDateItem.getDay();
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                reference = database.getReference("appointment");
+
+                HelperClass3 helperClass = new HelperClass3(patMail, docMail, dateForDatabase, selectedTime);
+                reference.child(patMail.replace(".", ",") + "&" + docMail.replace(".", ",")).setValue(helperClass);
+            }
+
             startActivity(intent);
         });
     }
@@ -118,22 +123,12 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
             String amPm = (hourOfDay / 12) == 0 ? "AM" : "PM";
             selectedTime = String.format("%02d:%02d %s", hour == 0 ? 12 : hour, minute, amPm);
 
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            reference = database.getReference("appointment");
-
-            // Update dateForDatabase with the selected date
-            if (selectedDateItem != null) {
-                dateForDatabase = selectedDateItem.getDate() + " " + selectedDateItem.getDay();
-            }
-
-            HelperClass3 helperClass = new HelperClass3(patMail, docMail, dateForDatabase, selectedTime);
-            reference.child(patMail.replace(".", ",") + "&" + docMail.replace(".", ",")).setValue(helperClass);
-
             timeButton.setText(selectedTime);
         }, 0, 0, false);
 
         dialog.show();
     }
+
     private String getDayName(int dayOfWeek) {
         switch (dayOfWeek) {
             case Calendar.SUNDAY:
