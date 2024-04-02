@@ -38,6 +38,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     private String selectedTime = "";
     private String patMail;
     private String docMail;
+    private ItemDate selectedDateItem;
 
     @Override
     public void onClick(View v) {
@@ -52,12 +53,13 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
         RecyclerView recyclerView = findViewById(R.id.recyclerDate);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         List<ItemDate> items = getDateItems();
-        recyclerView.setAdapter(new MyAdapterDate(this, items));
         MyAdapterDate adapter = new MyAdapterDate(this, items);
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener((view, date) -> {
-            dateForDatabase = date;
-            Toast.makeText(doctor_appointment_full_screen.this, dateForDatabase, Toast.LENGTH_SHORT).show();
+
+
+        adapter.setOnItemClickListener((view, itemDate) -> {
+            selectedDateItem = itemDate;
+            Toast.makeText(doctor_appointment_full_screen.this, "harshit", Toast.LENGTH_SHORT).show();
 
             // Update the selected position
             int clickedPosition = recyclerView.getChildAdapterPosition(view);
@@ -118,8 +120,13 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
 
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             reference = database.getReference("appointment");
-            String date = dateForDatabase;
-            HelperClass3 helperClass = new HelperClass3(patMail, docMail, date, selectedTime);
+
+            // Update dateForDatabase with the selected date
+            if (selectedDateItem != null) {
+                dateForDatabase = selectedDateItem.getDate() + " " + selectedDateItem.getDay();
+            }
+
+            HelperClass3 helperClass = new HelperClass3(patMail, docMail, dateForDatabase, selectedTime);
             reference.child(patMail.replace(".", ",") + "&" + docMail.replace(".", ",")).setValue(helperClass);
 
             timeButton.setText(selectedTime);
@@ -127,7 +134,6 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
 
         dialog.show();
     }
-
     private String getDayName(int dayOfWeek) {
         switch (dayOfWeek) {
             case Calendar.SUNDAY:
