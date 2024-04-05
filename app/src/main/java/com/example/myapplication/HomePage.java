@@ -105,6 +105,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("remember", "false");
                     editor.apply();
+                    editor.putString("pat_email","none");
+                    editor.apply();
                     Intent intent = new Intent(HomePage.this, MainActivity.class);
                     startActivity(intent);
 
