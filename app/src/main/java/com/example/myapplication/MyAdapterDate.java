@@ -42,7 +42,7 @@ public class MyAdapterDate extends RecyclerView.Adapter<MyAdapterDate.MyViewHold
         // Update the background color based on the selected position
         if (position == selectedPosition) {
             holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.my_primary));
-            Toast.makeText(context.getApplicationContext(),items.get(position).getDay() ,Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context.getApplicationContext(),items.get(position).getDay() ,Toast.LENGTH_SHORT).show();
 
         } else {
             holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));
