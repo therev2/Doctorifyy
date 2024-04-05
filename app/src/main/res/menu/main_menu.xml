@@ -8,11 +8,11 @@
             android:title="My Profile"/>
 
         <item android:id="@+id/My_app"
-            android:icon="@drawable/logout_icon"
+            android:icon="@drawable/appointment"
             android:title="My Appointments"/>
 
         <item android:id="@+id/My_doctors"
-            android:icon="@drawable/logout_icon"
+            android:icon="@drawable/doctor"
             android:title="My Doctors"/>
 
         <item android:id="@+id/Logout_profile"
