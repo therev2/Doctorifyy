@@ -49,7 +49,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     DatabaseReference database;
     Myadapter myAdapter;
     ArrayList<HelperClass> list;
-    CardView card1, card2, card3, card4, card5;
+    CardView card1, card2, card3, card4, card5,card6;
     TextView patName;
 
     public static final String SHARED_PREFS="sharedPrefs";
@@ -57,7 +57,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v){
-        System.out.println("button pressed");
+
         String filterlist = (String) v.getTag();
         System.out.println(filterlist);
         searchList(filterlist);
@@ -195,12 +195,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         card3 = findViewById(R.id.small_card3);
         card4 = findViewById(R.id.small_card4);
         card5 = findViewById(R.id.small_card5);
+        card6 = findViewById(R.id.small_card6);
 
         card1.setOnClickListener(this);
         card2.setOnClickListener(this);
         card3.setOnClickListener(this);
         card4.setOnClickListener(this);
         card5.setOnClickListener(this);
+        card6.setOnClickListener(this);
 
         OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
         onBackPressedDispatcher.addCallback(this, new OnBackPressedCallback(true) {
