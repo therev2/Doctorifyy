@@ -40,6 +40,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.regex.Matcher;
@@ -114,23 +115,6 @@ public class doctor_register extends AppCompatActivity {
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
                     public void onActivityResult(ActivityResult result) {
-//                        if (result.getResultCode() == Activity.RESULT_OK){
-//                            Intent data = result.getData();
-//                            uri = data.getData();
-//                            try {
-//                                InputStream inputStream = getContentResolver().openInputStream(uri);
-//                                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-//
-//                                Bitmap resizedBitmap = getResizedBitmap(bitmap, 300, 300);
-//
-//                                uplodedImage.setImageBitmap(resizedBitmap);
-//
-//                            } catch (FileNotFoundException e) {
-//                                e.printStackTrace();
-//                            }
-//                        } else {
-//                            Toast.makeText(doctor_register.this,"No Image Selected", Toast.LENGTH_SHORT);
-//                        }
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             Intent data = result.getData();
                             if (data != null && data.getData() != null) {
@@ -147,6 +131,7 @@ public class doctor_register extends AppCompatActivity {
                                 Bundle extras = data.getExtras();
                                 Bitmap imageBitmap = (Bitmap) extras.get("data");
                                 uplodedImage.setImageBitmap(imageBitmap);
+                                uri = getImageUri(imageBitmap);
                             }
                         } else {
                             Toast.makeText(doctor_register.this, "No Image Selected", Toast.LENGTH_SHORT).show();
@@ -155,6 +140,8 @@ public class doctor_register extends AppCompatActivity {
                     }
                 }
         );
+
+
 
         browseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,6 +235,12 @@ public class doctor_register extends AppCompatActivity {
                 });
             }
         });
+    }
+    private Uri getImageUri(Bitmap bitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "Title", null);
+        return Uri.parse(path);
     }
 
 //    private void requestRunTimePermissions() {
