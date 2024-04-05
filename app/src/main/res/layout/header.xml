@@ -1,25 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:padding="50dp"
-    android:gravity="bottom"
-    android:orientation="vertical"
-    android:background="@color/colorAccent"
-    android:layout_height="200dp">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Revan Channa"
-        android:textSize="30sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/regular_bold"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="channa@gmail.com"
-        android:maxLines="1"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/regular_light"/>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
 
-</LinearLayout>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    tools:context=".MainActivity"
+    android:id="@+id/main">
+
+    <LinearLayout
+        android:id="@+id/B"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="28dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="100px"
+            app:srcCompat="@drawable/logo_line_white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="contact us at revanchanna@gmail.com "
+            android:textColor="@color/white"/>
+
+
+    </LinearLayout>
+</RelativeLayout>
