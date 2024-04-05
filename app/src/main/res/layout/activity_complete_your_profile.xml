@@ -55,14 +55,30 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="20dp" />
-
-            <TextView
-                android:id="@+id/text2"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.9"
-                android:fontFamily="@font/regular_semi_bold"
-                android:text="Name*" />
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.9"
+                    android:fontFamily="@font/regular_semi_bold"
+                    android:text="Name" />
+                <TextView
+                    android:id="@+id/text22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.9"
+                    android:textColor="#EC1A2C"
+                    android:fontFamily="@font/regular_semi_bold"
+                    android:text="*" />
+
+
+            </LinearLayout>
+
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -86,14 +102,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp" />
 
-
-            <TextView
-                android:id="@+id/K"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:alpha="0.9"
-                android:fontFamily="@font/regular_semi_bold"
-                android:text="Age*" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/K"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.9"
+                    android:fontFamily="@font/regular_semi_bold"
+                    android:text="Age" />
+                <TextView
+                    android:id="@+id/K1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.9"
+                    android:textColor="#EC1A2C"
+                    android:fontFamily="@font/regular_semi_bold"
+                    android:text="*" />
+
+
+            </LinearLayout>
+
+
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
