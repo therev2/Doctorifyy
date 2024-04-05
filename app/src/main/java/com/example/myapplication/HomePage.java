@@ -90,13 +90,18 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int itemID = menuItem.getItemId();
 
-                if (itemID ==R.id.home1){
-                    Toast.makeText(HomePage.this, "Home Selected", Toast.LENGTH_SHORT).show();
-
+                if (itemID ==R.id.My_app)
+                {
+                    Toast.makeText(HomePage.this, "MY appointments ", Toast.LENGTH_SHORT).show();
                 }
-                if (itemID == R.id.My_profile){
-                    Toast.makeText(HomePage.this, "My Profile Selected", Toast.LENGTH_SHORT).show();
 
+
+                if (itemID == R.id.My_profile){
+                    Toast.makeText(HomePage.this, "My Profile ", Toast.LENGTH_SHORT).show();
+                }
+
+                if (itemID == R.id.My_doctors){
+                    Toast.makeText(HomePage.this, "My Doctors ", Toast.LENGTH_SHORT).show();
                 }
 
                 if (itemID == R.id.Logout_profile){
