@@ -4,27 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:fitsSystemWindows="true"
-    tools:context=".MYprofPat"
-    android:background="@color/black">
+    tools:context=".MYprofPat">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="10sp"
-        >
-
-
+        android:paddingTop="10sp">
 
 
         <ImageView
-            android:layout_marginRight="20sp"
-            android:layout_marginTop="5sp"
             android:id="@+id/imageView"
             android:layout_width="20sp"
             android:layout_height="20sp"
-            android:src="@drawable/logo_line_white"
             android:layout_alignParentEnd="true"
+            android:layout_marginTop="5sp"
+            android:layout_marginRight="20sp"
+            android:src="@drawable/logo_line_white"
 
             />
     </RelativeLayout>
@@ -34,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="675dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="8dp"
         app:cardCornerRadius="28dp">
 
         <LinearLayout
@@ -69,23 +67,18 @@
                     android:orientation="horizontal">
 
                     <TextView
-
-
                         android:id="@+id/n"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
-
+                        android:fontFamily="@font/regular_semi_bold"
                         android:text="Name:  "
                         android:textColor="@color/black"
                         android:textSize="20dp" />
 
 
                     <TextView
-
                         android:id="@+id/n1"
                         android:layout_width="321dp"
-
                         android:layout_height="wrap_content"
                         android:layout_marginStart="50dp"
                         android:layout_toEndOf="@id/n"
@@ -103,12 +96,13 @@
 
                     <TextView
 
-
                         android:id="@+id/age"
 
                         android:layout_width="wrap_content"
+
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view1"
+                        android:fontFamily="@font/regular_semi_bold"
 
 
                         android:text="Age:  "
@@ -137,13 +131,14 @@
                         android:layout_below="@id/age" />
 
                     <TextView
-
-
                         android:id="@+id/add"
 
+
                         android:layout_width="wrap_content"
+
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view2"
+                        android:fontFamily="@font/regular_semi_bold"
                         android:text="Address:  "
 
 
@@ -160,7 +155,7 @@
                         android:layout_below="@id/view2"
                         android:layout_marginStart="50dp"
                         android:layout_toEndOf="@id/n"
-                        android:text="241,SVBH,MNNIT-A,Teliyarganj,Allahabad,211004"
+                        android:text="NIT ALLAHABAD"
                         android:textColor="@color/black"
                         android:textSize="20dp"
 
@@ -173,13 +168,14 @@
                         android:layout_below="@id/add" />
 
                     <TextView
-
-
                         android:id="@+id/gender"
 
+
                         android:layout_width="wrap_content"
+
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view3"
+                        android:fontFamily="@font/regular_semi_bold"
 
                         android:text="Gender:  "
 
@@ -209,13 +205,14 @@
                         android:layout_below="@id/gender" />
 
                     <TextView
-
-
                         android:id="@+id/status"
 
+
                         android:layout_width="wrap_content"
+
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view5"
+                        android:fontFamily="@font/regular_semi_bold"
                         android:text="Status:  "
 
 
@@ -261,6 +258,7 @@
                 android:textColor="@color/black" />
 
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 
