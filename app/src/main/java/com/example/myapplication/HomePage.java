@@ -96,6 +96,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                     //setting patient name
                     patName.setText(pat_name);
+
+                    // Find the "My_profile" MenuItem
+                    MenuItem profileItem = navigationView.getMenu().findItem(R.id.My_profile);
+
+                    // Set the new title
+                    String newTitle = "Hi, " + pat_name;
+                    profileItem.setTitle(newTitle);
+
                 }
             }
 
