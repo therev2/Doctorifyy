@@ -34,6 +34,10 @@
             android:name=".MyPatientpg"
             android:exported="false" />
         <activity
+            android:name=".nav_doc"
+            android:exported="false"
+            android:theme="@style/Theme.MyApplication" />
+        <activity
             android:name=".Myprof_doc"
             android:exported="false"
             android:theme="@style/Theme.MyApplication" />
