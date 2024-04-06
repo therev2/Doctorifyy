@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginTop="-20dp"
-            android:backgroundTint="@color/my_primary"
+            android:backgroundTint="@color/black"
             app:cardCornerRadius="20dp">
 
             <FrameLayout
@@ -35,7 +35,7 @@
                         android:translationZ="40dp"
                         android:background="@drawable/btn_total_round"
                         android:clipToOutline="true"
-                        android:src="@drawable/doctor"
+                        android:src="@drawable/doctor_default"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         tools:layout_editor_absoluteY="16dp" />
@@ -59,7 +59,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="25dp"
                         android:layout_marginEnd="5dp"
-                        android:backgroundTint="@color/black"
+                        android:backgroundTint="@color/white"
+
                         ></Button>
 
 
