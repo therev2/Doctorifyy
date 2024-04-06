@@ -29,8 +29,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="appointment" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../../appointment.svg" />
+                            <entry key="outputName" value="doctor_default" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../2-removebg-preview-2.svg" />
                           </map>
                         </option>
                       </PersistentState>
