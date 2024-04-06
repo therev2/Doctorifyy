@@ -1,38 +1,68 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
 import android.widget.TextView;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.databinding.ActivityMyprofPatBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class MYprofPat extends AppCompatActivity {
 
     TextView textView,name_mp,age_mp,add_mp,ms_mp,gender_mp;
+    public static final String SHARED_PREFS="sharedPrefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_myprof_pat);
+
+        //getting doc email from shared preference and storing it in variable
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        String Email_of_pat = sharedPreferences.getString("patient_email","");
+
         name_mp = findViewById(R.id.n1);
         age_mp = findViewById(R.id.age);
         add_mp = findViewById(R.id.add);
         ms_mp = findViewById(R.id.status);
         gender_mp =findViewById(R.id.gender);
         textView = findViewById(R.id.edit);
+
+        //referencing database for parent "patient"
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("patient");
+
+        //matching input email with database email
+        Query checkUserDatabase = reference.orderByChild("email").equalTo(Email_of_pat);
+
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+
+                    //getting patient name form database
+                    String name = snapshot.child(Email_of_pat.replace(".",",")).child("name").getValue(String.class);
+
+                    //setting patient name
+                    name_mp.setText(name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         textView.setOnClickListener(v->{
