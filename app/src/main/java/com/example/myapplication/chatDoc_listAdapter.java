@@ -42,6 +42,9 @@ public class chatDoc_listAdapter extends RecyclerView.Adapter<chatDoc_listAdapte
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, chat_activity.class);
+            intent.putExtra("username","Dr."+helperclass.getName());
+            intent.putExtra("Image",list_doc.get(position).getImage());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
 
         });
