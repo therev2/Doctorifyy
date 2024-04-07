@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,14 @@ public class MyAppointmentsPat_Adapter extends RecyclerView.Adapter<MyAppointmen
         holder.doc_name.setText(helperclass.getDoc_email());
         holder.app_date.setText(helperclass.getDate());
         holder.app_time.setText(helperclass.getTime());
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, booked_confirm.class);
+            intent.putExtra("doctor_name", helperclass.getDoc_email());
+            intent.putExtra("timee", helperclass.getTime());
+            intent.putExtra("qr_code_data", helperclass.getPat_email() + "&" + helperclass.getDoc_email());
+            context.startActivity(intent);
+        });
 
     }
 
