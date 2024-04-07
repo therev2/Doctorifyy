@@ -43,7 +43,7 @@ public class doc_landing_page extends AppCompatActivity {
     TextView doctorName;
     String doc_name,image_url,scanned_patEmail,scanned_docEmail,Email_of_doc;
     Button logoutDoc;
-    TextView camera_btn;
+    ImageView camera_btn;
 
     //initialised shared storage for doc
     public static final String SHARED_PREFS="sharedPrefs_doc";
