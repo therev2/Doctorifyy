@@ -49,7 +49,7 @@
             android:layout_toEndOf="@id/doc"
             android:fontFamily="@font/regular_bold"
             android:maxLines="1"
-            android:text="Harshit Kumar Jayaswal"
+            android:text="Harshit Kumar "
             android:textColor="@color/black"
             android:textSize="23dp" />
 
@@ -62,8 +62,22 @@
             android:layout_marginStart="26dp"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="12dp"
-            android:layout_toEndOf="@id/doc_img"
+            android:layout_toEndOf="@id/date"
             android:text="12:00 am"
+            android:paddingLeft="10dp"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:fontFamily="@font/regular_semi_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="12dp"
+            android:layout_toEndOf="@id/doc_img"
+            android:text="7th April,2024"
             android:paddingLeft="10dp"
             android:textSize="12sp" />
 
@@ -85,7 +99,7 @@
             android:id="@+id/charges"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
+            android:layout_marginStart="-6dp"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="12dp"
             android:layout_toEndOf="@id/rupees"
