@@ -92,8 +92,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     //getting patient name form database
                     String pat_name = snapshot.child(Email_of_pat.replace(".",",")).child("name").getValue(String.class);
 
-                    System.out.println(pat_name);
-
                     //setting patient name
                     patName.setText(pat_name);
 
@@ -135,6 +133,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 if (itemID ==R.id.My_app)
                 {
                     Toast.makeText(HomePage.this, "MY appointments ", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePage.this, my_app_list.class);
+                    startActivity(intent);
                 }
 
 

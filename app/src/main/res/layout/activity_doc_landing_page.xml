@@ -55,18 +55,19 @@
 
                     </TextView>
 
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
                         android:id="@+id/camera_btn"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginTop="25dp"
-                        android:layout_marginEnd="5dp"
-                        android:background="@drawable/scanner"
+                        android:layout_marginTop="35dp"
+                        android:clickable="true"
+                        android:layout_marginEnd="13dp"
+                        android:background="@drawable/scan"
                         android:backgroundTint="@color/white"
-                        android:clipToOutline="true"
+                        android:clipToOutline="true"/>
 
-                        ></Button>
 
 
 
@@ -98,6 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/recyclerView_doc"
+        android:layout_above="@id/logout_doc"
             android:clickable="true"
             android:layout_below="@id/upcoming"
             android:scrollbars="vertical"/>
@@ -115,13 +117,6 @@
             >
 
         </Button>
-
-
-
-
-
-
-
 
 
 
