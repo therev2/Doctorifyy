@@ -15,9 +15,10 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/background_received_msg"
         android:padding="12dp"
-        android:text="Your text message goes here"
+
         android:textColor="@color/white"
         android:textSize="13sp"
+        app:layout_constraintWidth_max="wrap"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
