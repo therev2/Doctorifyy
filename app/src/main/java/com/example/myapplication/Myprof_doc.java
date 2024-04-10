@@ -79,7 +79,7 @@ public class Myprof_doc extends AppCompatActivity {
                     doc_email.setText(docemail);
                     specialist.setText(specialist_doc);
                     timing.setText(timing_doc);
-                    charges.setText(charges_doc);
+                    charges.setText("Rs "+charges_doc);
 
                     Glide.with(Myprof_doc.this).load(image_doc).into(doc_image);
                 }
