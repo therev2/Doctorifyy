@@ -48,7 +48,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     private String selectedTime = "";
     private String patMail;
     private String docMail;
-    String pat_name,doc_name,doc_image,doc_charges;;
+    String pat_name,doc_name,doc_image,doc_charges;
 
     private ItemDate selectedDateItem;
 
