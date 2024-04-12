@@ -16,6 +16,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,7 +42,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     DatabaseReference database;
     Myadapter myAdapter;
     ArrayList<HelperClass> list;
-    CardView card1, card2, card3, card4, card5, card6;
+    CardView card1, card2, card3, card4, card5, card6,card7,card8,card9,card10;
     TextView patName;
     ImageView locationbtn;
     public static final String SHARED_PREFS = "sharedPrefs";
@@ -64,11 +65,15 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.nav_drawer);
         locationbtn = findViewById(R.id.location_btn);
 
+
+
+
         locationbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, Map.class);
                 startActivity(intent);
+//                myAdapter.searchDataList(list);  <------ harshit reset button kardena
             }
         });
 
@@ -202,6 +207,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         card4 = findViewById(R.id.small_card4);
         card5 = findViewById(R.id.small_card5);
         card6 = findViewById(R.id.small_card6);
+        card7 = findViewById(R.id.small_card7);
+        card8 = findViewById(R.id.small_card8);
+        card9 = findViewById(R.id.small_card9);
+        card10 = findViewById(R.id.small_card10);
 
         card1.setOnClickListener(this);
         card2.setOnClickListener(this);
@@ -209,6 +218,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         card4.setOnClickListener(this);
         card5.setOnClickListener(this);
         card6.setOnClickListener(this);
+        card7.setOnClickListener(this);
+        card8.setOnClickListener(this);
+        card9.setOnClickListener(this);
+        card10.setOnClickListener(this);
+
 
         OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
         onBackPressedDispatcher.addCallback(this, new OnBackPressedCallback(true) {
@@ -255,5 +269,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         myAdapter.searchDataList(searchList);
     }
 
+    public void searchList_Name(String text) {
+        ArrayList<HelperClass> searchList_name = new ArrayList<>();
+        for (HelperClass helperClass : list) {
+            if (helperClass.getName().toLowerCase().contains(text.toLowerCase())) {
+                searchList_name.add(helperClass);
+            }
+        }
+        myAdapter.searchDataList_Name(searchList_name);
+    }
 
 }
