@@ -22,7 +22,7 @@
         android:layout_height="25sp"
         android:layout_margin="10dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="5sp"
+        android:layout_marginTop="15sp"
         android:layout_marginEnd="27dp"
         android:layout_marginRight="20sp"
         android:src="@drawable/logo_line_white" />
@@ -47,29 +47,30 @@
                 android:id="@+id/rel"
                 android:layout_width="match_parent"
 
-                android:layout_height="match_parent">
+                android:layout_height="699dp">
 
                 <TextView
                     android:id="@+id/my_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:gravity="center"
                     android:fontFamily="@font/regular_bold"
+                    android:gravity="center"
                     android:text="My Appointments"
                     android:textColor="@android:color/black"
                     android:textSize="24sp" />
+
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_below="@id/my_list"
                     android:id="@+id/view1"
-                    android:layout_height="10dp"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/my_list" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/mainuser"
-                    android:layout_below="@+id/view1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/view1" />
             </RelativeLayout>
 
         </FrameLayout>
