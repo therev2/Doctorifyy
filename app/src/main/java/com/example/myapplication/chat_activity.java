@@ -54,6 +54,9 @@ public class chat_activity extends AppCompatActivity {
     ImageView docImage;
     ImageButton back_btn;
     TextView doct_staus;
+
+    private static final int REQUEST_CODE_PICK_IMAGE = 1;
+    private ImageView add_img_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +78,11 @@ public class chat_activity extends AppCompatActivity {
         //setting the doctor username on chat screen//
         doc_name = findViewById(R.id.doctor_name);
         doc_name.setText(getIntent().getStringExtra("username"));
+        
+        //add_img_btn
+
+        add_img_btn = findViewById(R.id.add_img_btn);
+        add_img_btn.setOnClickListener(v -> openImagePicker());
 
         back_btn = findViewById(R.id.back_btn_arrow);
 
@@ -107,6 +115,13 @@ public class chat_activity extends AppCompatActivity {
         });
 
     }
+
+    private void openImagePicker() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Select Image"), REQUEST_CODE_PICK_IMAGE);
+    }
+
     private void init(){
         chatMessages = new ArrayList<>();
         chatAdapter = new ChatAdapter(chatMessages,Email_of_pat);
