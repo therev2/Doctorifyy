@@ -10,6 +10,9 @@ Features
 - Patient Appointment Booking: Patients can easily browse through available doctors, view their schedules, and book appointments.
 - Doctor Schedule Management: Doctors can manage their availability, view upcoming appointments.
 - User Authentication: Secure user authentication ensures that only authorized users can access the platform.
+- Real time chatting with doctor
+- Online payment option available
+
 
 
 Tech Stack
