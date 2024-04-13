@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.myapplication.ChatMessage;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.ItemContainerRecievedMessageBinding;
@@ -78,6 +80,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             holder.binding.imageMessage.setVisibility(View.VISIBLE);
             Glide.with(holder.itemView.getContext())
                     .load(chatMessage.message)
+                    .transform(new RoundedCorners(31))
                     .into(holder.binding.imageMessage);
             holder.binding.imageMessage.setOnClickListener(v -> onImageClickListener.onImageClick(chatMessage.message));
         } else {
@@ -95,6 +98,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             holder.binding.imageMessage.setVisibility(View.VISIBLE);
             Glide.with(holder.itemView.getContext())
                     .load(chatMessage.message)
+                    .transform(new RoundedCorners(31))
                     .into(holder.binding.imageMessage);
             holder.binding.imageMessage.setOnClickListener(v -> onImageClickListener.onImageClick(chatMessage.message));
 

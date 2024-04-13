@@ -22,6 +22,14 @@ public class MyAdapterDate extends RecyclerView.Adapter<MyAdapterDate.MyViewHold
         this.context = context;
         this.items = items;
     }
+    public void setItems(List<ItemDate> items) {
+        this.items = items;
+    }
+    public void resetSelectedPosition() {
+        selectedPosition = -1;
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override

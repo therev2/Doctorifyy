@@ -27,7 +27,6 @@ android:padding="2dp">
         android:layout_height="200dp"
         android:adjustViewBounds="true"
         android:padding="6dp"
-
         android:scaleType="fitCenter"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"

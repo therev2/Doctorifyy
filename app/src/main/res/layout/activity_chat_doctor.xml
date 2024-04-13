@@ -15,12 +15,12 @@
         >
         <ImageButton
             android:id="@+id/back_btn_arrow"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5sp"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="14dp"
             android:layout_toLeftOf="@id/doctor_profile"
             android:src="@drawable/baseline_arrow_back_24"
             android:background="@android:color/transparent" />
@@ -32,26 +32,26 @@
 
 
             <TextView
-                android:id="@+id/patient_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/regular_semi_bold"
-
-
-                android:paddingLeft="20dp"
                 android:text="Raman verma"
+                android:id="@+id/patient_name"
+                android:paddingLeft="9dp"
+                android:layout_toRightOf="@id/doctor_profile"
+
+                android:layout_marginTop="7dp"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:fontFamily="@font/regular_semi_bold"
+                android:textSize="16sp"/>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:text=""
-
+                android:layout_toRightOf="@id/doctor_profile"
                 android:layout_below="@id/patient_name"
                 android:id="@+id/patient_status"
                 android:textColor="@color/white"
-                android:paddingLeft="15dp"
+                android:paddingLeft="9dp"
                 android:fontFamily="@font/regular_light"
                 android:textSize="12sp"/>
 

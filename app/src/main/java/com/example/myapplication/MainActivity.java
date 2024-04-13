@@ -94,7 +94,6 @@ public class  MainActivity extends AppCompatActivity {
 
         });
 
-
         loginEmail = findViewById(R.id.loginemail);
         loginPassword = findViewById(R.id.loginpass);
         loginButton = findViewById(R.id.klop);
